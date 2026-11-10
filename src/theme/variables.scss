@@ -1,2 +1,17 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+
+// Music-themed color palette
+$ion-color-primary: #4b0082;
+$ion-color-primary-contrast: #ffffff;
+$ion-color-secondary: #ffd54f;
+$ion-color-secondary-contrast: #111111;
+
+// Set Ionic CSS variables for components
+:root {
+	--ion-color-primary: #4b0082;
+	--ion-color-primary-contrast: #ffffff;
+	--ion-color-secondary: #ffd54f;
+	--ion-color-secondary-contrast: #111111;
+	--ion-background-color: #070712;
+}

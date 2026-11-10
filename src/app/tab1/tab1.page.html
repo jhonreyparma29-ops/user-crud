@@ -1,17 +1,111 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+  <ion-toolbar color="dark">
+    <ion-title>Add Guitar</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="intro">
+    <ion-icon name="musical-notes-outline"></ion-icon>
+    <h2>YONG'S GUITARS</h2>
+    <p>Fill out the details below to add a unit to the rental inventory.</p>
+  </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list inset="true">
+    <ion-item>
+      <ion-input
+        label="Brand *"
+        labelPlacement="floating"
+        placeholder="Yamaha"
+        [(ngModel)]="form.brand"
+        [ngModelOptions]="{ standalone: true }">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Model *"
+        labelPlacement="floating"
+        placeholder="F310"
+        [(ngModel)]="form.model"
+        [ngModelOptions]="{ standalone: true }">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        label="Type"
+        labelPlacement="floating"
+        [(ngModel)]="form.type"
+        [ngModelOptions]="{ standalone: true }">
+        <ion-select-option *ngFor="let t of types" [value]="t">{{ t }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Daily Rate (PHP) *"
+        labelPlacement="floating"
+        type="number"
+        min="0"
+        [(ngModel)]="form.price"
+        [ngModelOptions]="{ standalone: true }">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Stock *"
+        labelPlacement="floating"
+        type="number"
+        min="0"
+        [(ngModel)]="form.stock"
+        [ngModelOptions]="{ standalone: true }">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        label="Status"
+        labelPlacement="floating"
+        [(ngModel)]="form.status"
+        [ngModelOptions]="{ standalone: true }">
+        <ion-select-option *ngFor="let s of statuses" [value]="s">{{ s }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="form.status === 'Rented'">
+      <ion-input
+        label="Renter Name"
+        labelPlacement="floating"
+        placeholder="Juan Dela Cruz"
+        [(ngModel)]="form.renter"
+        [ngModelOptions]="{ standalone: true }">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-button expand="block" [disabled]="saving" (click)="addGuitar()">
+    <ion-icon slot="start" name="save-outline"></ion-icon>
+    Save Guitar
+  </ion-button>
+
+  <ion-button expand="block" fill="outline" color="medium" (click)="clearForm()">
+    Clear Form
+  </ion-button>
+
+  <ion-button expand="block" fill="clear" (click)="goToInventory()">
+    View Inventory
+    <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+  </ion-button>
+
+  <ion-toast
+    [isOpen]="isToastOpen"
+    [message]="toastMsg"
+    [color]="toastColor"
+    [duration]="2000"
+    position="bottom"
+    (didDismiss)="isToastOpen = false">
+  </ion-toast>
 </ion-content>

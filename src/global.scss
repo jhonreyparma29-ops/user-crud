@@ -35,3 +35,78 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Phone frame and music-themed styling */
+.app-wrapper {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(180deg, #0f1020 0%, #151627 60%);
+}
+
+.phone-frame {
+	width: 360px;
+	height: 780px;
+	border-radius: 36px;
+	background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+	box-shadow: 0 20px 40px rgba(3,6,23,0.7), inset 0 2px 0 rgba(255,255,255,0.02);
+	border: 6px solid rgba(255,255,255,0.04);
+	position: relative;
+	overflow: hidden;
+}
+
+.phone-notch {
+	width: 160px;
+	height: 28px;
+	background: rgba(0,0,0,0.5);
+	border-radius: 0 0 18px 18px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 10px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.phone-home {
+	width: 56px;
+	height: 6px;
+	background: rgba(255,255,255,0.06);
+	border-radius: 6px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 18px;
+}
+
+.phone-screen {
+	position: absolute;
+	inset: 56px 12px 56px 12px;
+	border-radius: 28px;
+	overflow: hidden;
+	background: linear-gradient(180deg, rgba(75,0,130,0.12), rgba(0,0,0,0.18)), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><text x='0' y='18' font-size='18' fill='%23ffffff' opacity='0.06'>&#9835;</text></svg>") repeat;
+	background-size: 80px 80px;
+}
+
+/* Make the frame disappear on narrow screens so the app is usable on desktop small windows */
+@media (max-width: 420px) {
+	.phone-frame { width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none; }
+	.phone-screen { inset: 0; border-radius: 0; }
+	.phone-notch, .phone-home { display: none; }
+	.app-wrapper { background: var(--ion-background-color); }
+}
+
+/* Music-themed accents for common elements */
+ion-toolbar[color="dark"] {
+	background: linear-gradient(90deg,#4b0082,#8a2be2);
+}
+
+ion-tab-bar {
+	--background: linear-gradient(90deg,#2a0b3b,#0f1a2b);
+	--color: #ffd54f;
+}
+
+ion-button[fill="clear"] {
+	--color: #ffd54f;
+}
+
